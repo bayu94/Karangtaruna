@@ -55,7 +55,7 @@ $this->load->view('Header');
                       
                       <td>
                       	<a class="btn btn-primary btn-flat" href="<?php echo base_url('Data_RT/form/'.$value['rt_id']); ?>"><i class="fa fa-lg fa-refresh"></i></a>
-                      	<a class="btn btn-warning btn-flat" href="#" id="DelRT" ><i class="fa fa-lg fa-trash"></i></a>
+                      	<a class="btn btn-warning btn-flat" href="#" id="DelRT" data-id="<?php echo $value['rt_id']; ?>" ><i class="fa fa-lg fa-trash"></i></a>
 
                       </td>
                     </tr>
@@ -87,8 +87,7 @@ $this->load->view('Header');
     <script type="text/javascript">
       
       $('#DelRT').on("click",function(e){
-      	e.preventDefault();
-  		var url = $(this).attr('href');
+      	var id = $(this).data("id");
       	swal({
       		title: "Apakah Anda Yakin?",
       		text: "Anda Tidak Bisa Mengembalikan Data ini kembali ",
@@ -101,7 +100,7 @@ $this->load->view('Header');
       	}, function(isConfirm) {
       		if (isConfirm) {
       			swal("Terhapus!", "Data Anda Berhasil di Hapus", "success");      			
-      			window.location.replace(url);
+      			window.location.href = "<?php echo base_url('Data_RT/delete/'); ?>"+id;
       		} else {
       			swal("Dibatalkan", "Data Anda Aman", "error");
       		}

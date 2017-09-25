@@ -46,7 +46,7 @@ $this->load->view('Header');
                       <td><?php echo $value['kecamatan_nama']; ?></td>
                       <td>
                       	<a class="btn btn-primary btn-flat" href="<?php echo base_url('Data_kecamatan/form/'.$value['kecamatan_id']); ?>"><i class="fa fa-lg fa-refresh"></i></a>
-                      	<a class="btn btn-warning btn-flat KecDel" ><i class="fa fa-lg fa-trash"></i></a>
+                      	<a class="btn btn-warning btn-flat KecDel" data-id="<?php echo $value['kecamatan_id']; ?>"><i class="fa fa-lg fa-trash"></i></a>
 
                       </td>
                     </tr>
@@ -78,6 +78,7 @@ $this->load->view('Header');
      <script type="text/javascript">
       
       $('.KecDel').click(function(){
+        var id = $(this).data("id");
       	swal({
       		title: "Apakah Anda Yakin?",
       		text: "Anda Tidak Bisa Mengembalikan Data ini kembali ",
@@ -90,7 +91,7 @@ $this->load->view('Header');
       	}, function(isConfirm) {
       		if (isConfirm) {
       			swal("Terhapus!", "Data Anda Berhasil di Hapus", "success");
-      			window.location.href = "<?php echo base_url('Data_kecamatan/delete/'.$value['kecamatan_id']); ?>";
+      			window.location.href = "<?php echo base_url('Data_kelurahan/delete/'); ?>"+id;
       		} else {
       			swal("Dibatalkan", "Data Anda Aman", "error");
       		}
